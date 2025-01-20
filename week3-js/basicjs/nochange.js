@@ -6,7 +6,6 @@
 
 function computeCost() {
   //add your code here
-
   // Compute the cost
 
   // document.getElementById("cost").value = 100;
