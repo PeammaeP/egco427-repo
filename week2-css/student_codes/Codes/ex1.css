@@ -1,0 +1,14 @@
+body {
+  background-color: azure;
+}
+h1 {
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+}
+h2 {
+  color: rgb(112, 208, 247);
+}
+p {
+  margin-left: 50px;
+}
