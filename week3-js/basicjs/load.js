@@ -4,5 +4,5 @@
 // The onload event handler
 
 function load_greeting() {
-
+  alert("Hello World");
 }
