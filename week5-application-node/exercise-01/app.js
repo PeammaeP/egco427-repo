@@ -1,5 +1,4 @@
 var express = require("express");
-var fs = require("fs");
 var crypto = require("crypto");
 var routing = express();
 
@@ -8,8 +7,8 @@ var myUsers = require("./users.json").users;
 routing
   .get("/profile/:id", function (req, res) {
     var userInfo = ""; // clear the info for every requests
-    var user = myUsers.find((u) => u.id === req.params.id); // find the match userid and request params id 
-    var shasum = crypto.createHash("sha1"); // create new hash function for every request 
+    var user = myUsers.find((u) => u.id === req.params.id); // find the match userid and request params id
+    var shasum = crypto.createHash("sha1"); // create new hash function for every request
 
     if (user) {
       for (const [key, value] of Object.entries(user)) {
