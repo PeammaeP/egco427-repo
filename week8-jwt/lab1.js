@@ -12,6 +12,18 @@ const URL = "mongodb://127.0.0.1:27017";
 const dbName = "Product_CO2567T2";
 const collectionName = "users";
 
+function ensureToken(req, res, next) {
+  const bearerHeader = req.headers["authorization"];
+  if (typeof bearerHeader !== "undefined") {
+    const bearer = bearerHeader.split(" ");
+    const bearerToken = bearer[1];
+    req.token = bearerToken;
+    next(); // use with token with request -> Bearer Token
+  } else {
+    res.sendStatus(403);
+  }
+}
+
 // no need to verify the bearer token , create the token part
 app.post("/api/login", async function (req, res) {
   // await connect
@@ -66,6 +78,19 @@ app.post("/api/login", async function (req, res) {
     });
     res.end();
   }
+});
+
+app.get("/api/protected", ensureToken, function (req, res) {
+  jwt.verify(req.token, "secret-key", function (err, data) {
+    if (err) {
+      res.sendStatus(403); // forbidden current
+    } else {
+      res.json({
+        description: "Protected Information , congrats !",
+        data: data,
+      });
+    }
+  });
 });
 
 app.listen(PORT, () => {
