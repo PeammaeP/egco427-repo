@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import HelloWorld from "../components/HelloWorld.vue";
 import Home from "../views/home.vue";
+import Search from "../views/search.vue";
 
 // create web history ออกมา
 const routerHistory = createWebHistory();
@@ -25,6 +26,11 @@ const routes = [
   {
     path: "/",
     redirect: "/home",
+  },
+  {
+    path: "/search",
+    name: "Search",
+    component: Search,
   },
 ];
 
